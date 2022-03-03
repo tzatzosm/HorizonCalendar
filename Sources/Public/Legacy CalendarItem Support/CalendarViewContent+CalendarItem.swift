@@ -131,7 +131,7 @@ extension CalendarViewContent {
     -> CalendarViewContent
   {
     let dayRanges = Set(dateRanges.map { DayRange(containing: $0, in: calendar) })
-    dayRangesAndItemProvider = (dayRanges, { .legacy(dayRangeItemProvider($0)) })
+    dayRangesAndItemProviders.append((dayRanges, { .legacy(dayRangeItemProvider($0)) }))
     return self
   }
 

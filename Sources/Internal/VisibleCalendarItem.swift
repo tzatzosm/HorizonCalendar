@@ -84,7 +84,7 @@ extension VisibleCalendarItem {
     case pinnedDaysOfWeekRowBackground
     case pinnedDaysOfWeekRowSeparator
     case daysOfWeekRowSeparator(Month)
-    case dayRange(DayRange)
+    case dayRange(DayRange, CGFloat)
     case overlayItem(CalendarViewContent.OverlaidItemLocation)
 
     var zPosition: CGFloat {
@@ -94,7 +94,7 @@ extension VisibleCalendarItem {
       case .pinnedDaysOfWeekRowBackground: return 999
       case .pinnedDaysOfWeekRowSeparator: return 1001
       case .daysOfWeekRowSeparator: return 501
-      case .dayRange: return 250
+      case .dayRange(_, let index): return 250 + index
       case .overlayItem: return 750
       }
     }

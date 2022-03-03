@@ -297,7 +297,7 @@ public final class CalendarViewContent {
     -> CalendarViewContent
   {
     let dayRanges = Set(dateRanges.map { DayRange(containing: $0, in: calendar) })
-    dayRangesAndItemProvider = (dayRanges, { .itemModel(dayRangeItemProvider($0)) })
+    dayRangesAndItemProviders.append((dayRanges, { .itemModel(dayRangeItemProvider($0)) }))
     return self
   }
 
@@ -353,9 +353,9 @@ public final class CalendarViewContent {
     _ weekdayIndex: Int)
     -> InternalAnyCalendarItemModel
   var dayItemProvider: (Day) -> InternalAnyCalendarItemModel
-  var dayRangesAndItemProvider: (
+  var dayRangesAndItemProviders = [(
     dayRanges: Set<DayRange>,
-    dayRangeItemProvider: (DayRangeLayoutContext) -> InternalAnyCalendarItemModel)?
+    dayRangeItemProvider: (DayRangeLayoutContext) -> InternalAnyCalendarItemModel)]()
   var overlaidItemLocationsAndItemProvider: (
     overlaidItemLocations: Set<OverlaidItemLocation>,
     overlayItemProvider: (OverlayLayoutContext) -> InternalAnyCalendarItemModel)?

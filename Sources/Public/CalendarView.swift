@@ -607,7 +607,14 @@ public final class CalendarView: UIView {
     let previousVisibleViewsForVisibleItems = visibleViewsForVisibleItems
 
     visibleViewsForVisibleItems.removeAll(keepingCapacity: true)
-
+    let rangeVisibleItems = visibleItems.filter {
+      switch $0.itemType {
+      case .dayRange:
+        return true
+      default:
+        return false
+      }
+    }
     reuseManager.viewsForVisibleItems(
       visibleItems,
       viewHandler: { view, visibleItem, previousBackingVisibleItem in

@@ -679,7 +679,7 @@ final class VisibleItemsProvider {
             visibleItems: &visibleItems,
             handledDayRanges: &handledDayRanges,
             originsForMonths: &originsForMonths)
-
+          
           // Take into account the pinned days of week header when determining the first visible day
           if
             !content.monthsLayout.pinDaysOfWeekToTop ||
@@ -747,22 +747,29 @@ final class VisibleItemsProvider {
     originsForMonths: inout [Month: CGPoint])
   {
     // Handle day ranges that start or end with the current day.
-    for dayRange in content.dayRangesAndItemProvider?.dayRanges ?? [] {
-      guard
-        !handledDayRanges.contains(dayRange),
-        dayRange.contains(day)
-      else
-      {
-        continue
+    for (index, dayRangesAndItemProvider) in content.dayRangesAndItemProviders.enumerated() {
+      for dayRange in dayRangesAndItemProvider.dayRanges {
+        guard
+//          !handledDayRanges.contains(dayRange),
+          dayRange.contains(day)
+        else
+        {
+          continue
+        }
+        let layoutContext = dayRangeLayoutContext(
+          for: dayRange,
+             containing: day,
+             withFrame: frame,
+             originsForMonths: &originsForMonths)
+        handleDayRange(
+          dayRange,
+          dayRangeItemProvider: dayRangesAndItemProvider.dayRangeItemProvider,
+          with: layoutContext,
+          inBounds: bounds,
+          visibleItems: &visibleItems,
+          index: index)
+//        handledDayRanges.insert(dayRange)
       }
-
-      let layoutContext = dayRangeLayoutContext(
-        for: dayRange,
-        containing: day,
-        withFrame: frame,
-        originsForMonths: &originsForMonths)
-      handleDayRange(dayRange, with: layoutContext, inBounds: bounds, visibleItems: &visibleItems)
-      handledDayRanges.insert(dayRange)
     }
   }
 
@@ -770,18 +777,12 @@ final class VisibleItemsProvider {
   // `visibleItems` set.
   private func handleDayRange(
     _ dayRange: DayRange,
+    dayRangeItemProvider: ((CalendarViewContent.DayRangeLayoutContext) -> InternalAnyCalendarItemModel),
     with dayRangeLayoutContext: DayRangeLayoutContext,
     inBounds bounds: CGRect,
-    visibleItems: inout Set<VisibleCalendarItem>)
+    visibleItems: inout Set<VisibleCalendarItem>,
+    index: Int)
   {
-    guard
-      let dayRangeItemProvider = content.dayRangesAndItemProvider?.dayRangeItemProvider
-    else
-    {
-      preconditionFailure(
-        "`content.dayRangesAndItemProvider` cannot be nil when handling a day range.")
-    }
-
     let frame = dayRangeLayoutContext.frame
     let dayRangeLayoutContext = CalendarViewContent.DayRangeLayoutContext(
       daysAndFrames: dayRangeLayoutContext.daysAndFrames,
@@ -790,7 +791,7 @@ final class VisibleItemsProvider {
     visibleItems.insert(
       VisibleCalendarItem(
         calendarItemModel: dayRangeItemProvider(dayRangeLayoutContext),
-        itemType: .dayRange(dayRange),
+        itemType: .dayRange(dayRange, CGFloat(index)),
         frame: frame))
   }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50C150F427D11973009BFE82 /* SelectionDayRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C150F327D11973009BFE82 /* SelectionDayRange.swift */; };
 		93061FFE24F1AE1700177ECC /* CalendarViewContent+CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93061FFC24F1AE1700177ECC /* CalendarViewContent+CalendarItem.swift */; };
 		93061FFF24F1AE1700177ECC /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93061FFD24F1AE1700177ECC /* CalendarItem.swift */; };
 		9321957E26EEB44C0001C7E9 /* DayOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9321957D26EEB44C0001C7E9 /* DayOfWeekView.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50C150F327D11973009BFE82 /* SelectionDayRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionDayRange.swift; sourceTree = "<group>"; };
 		93061FFC24F1AE1700177ECC /* CalendarViewContent+CalendarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarViewContent+CalendarItem.swift"; sourceTree = "<group>"; };
 		93061FFD24F1AE1700177ECC /* CalendarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
 		9321957D26EEB44C0001C7E9 /* DayOfWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeekView.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				939E693F24846A8C00A8BCC7 /* Day.swift */,
 				939E694524847BA300A8BCC7 /* DayOfWeekPosition.swift */,
 				939E694124846EB400A8BCC7 /* DayRange.swift */,
+				50C150F327D11973009BFE82 /* SelectionDayRange.swift */,
 				93D6789D2772EC1D004948E5 /* Deprecations.swift */,
 				939E693D24846A6600A8BCC7 /* Month.swift */,
 				939E693424837E8700A8BCC7 /* MonthsLayout.swift */,
@@ -426,6 +429,7 @@
 				939E692D24837E0300A8BCC7 /* LayoutItem.swift in Sources */,
 				939E693A24837E8700A8BCC7 /* CalendarViewContent.swift in Sources */,
 				93D6789E2772EC1D004948E5 /* Deprecations.swift in Sources */,
+				50C150F427D11973009BFE82 /* SelectionDayRange.swift in Sources */,
 				939E692F24837E0300A8BCC7 /* OffScreenCalendarItemAccessibilityElement.swift in Sources */,
 				939E694624847BA300A8BCC7 /* DayOfWeekPosition.swift in Sources */,
 				933992992736562D00C80380 /* DoubleLayoutPassHelpers.swift in Sources */,
